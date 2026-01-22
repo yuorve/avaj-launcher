@@ -96,8 +96,6 @@ avaj_launcher/
 │   └── weather/
 │       ├── WeatherProvider.java # Singleton weather generator
 │       └── WeatherTower.java    # Weather-specific tower
-├── scenario.txt                 # Sample scenario file
-├── sources.txt                  # List of source files for compilation
 └── README.md                    # This file
 ```
 
