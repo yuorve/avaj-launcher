@@ -7,9 +7,9 @@ A Java-based aircraft weather simulation program that demonstrates object-orient
 This project simulates the behavior of different types of aircraft (Helicopters, Balloons, and JetPlanes) under varying weather conditions. Each aircraft type reacts differently to weather changes (SUN, RAIN, FOG, SNOW), and the simulation runs for a specified number of weather cycles.
 
 The project implements key design patterns including:
-- **Factory Pattern** - for aircraft creation
+- **Factory Pattern (Singleton)** - for aircraft creation with unique ID generation
 - **Observer Pattern** - for weather tower notifications
-- **Singleton Pattern** - for weather provider
+- **Singleton Pattern** - for weather provider and aircraft factory
 
 ## ✨ Features
 
@@ -81,28 +81,32 @@ Helicopter H2 22 33 44
 avaj_launcher/
 ├── simulator/
 │   ├── Simulator.java           # Main entry point
-│   ├── Flyable.java             # Interface for flyable objects
+│   ├── Flyable.java             # Abstract base class for flyable objects
 │   ├── Tower.java               # Observer pattern implementation
 │   ├── aircraft/
-│   │   ├── Aircraft.java        # Abstract base class
+│   │   ├── Aircraft.java        # Abstract aircraft class (extends Flyable)
 │   │   ├── Baloon.java          # Balloon implementation
 │   │   ├── Helicopter.java      # Helicopter implementation
 │   │   └── JetPlane.java        # JetPlane implementation
 │   ├── coordinates/
-│   │   └── Coordinates.java     # Position management
+│   │   ├── Coordinates.java     # Position management (package-private constructor)
+│   │   └── CoordinatesFactory.java # Factory for creating Coordinates
 │   ├── factory/
-│   │   └── AircraftFactory.java # Factory pattern for aircraft creation
+│   │   └── AircraftFactory.java # Singleton factory for aircraft creation
 │   └── weather/
 │       ├── WeatherProvider.java # Singleton weather generator
 │       └── WeatherTower.java    # Weather-specific tower
+├── scenario.txt                 # Sample scenario file
+├── sources.txt                  # List of source files for compilation
 └── README.md                    # This file
 ```
 
 ## 🎮 How It Works
 
-1. **Initialization**: The simulator reads the scenario file and creates aircraft using the Factory pattern
-2. **Registration**: All aircraft register with the WeatherTower (Observer pattern)
-3. **Simulation Loop**: For each simulation cycle:
+1. **Initialization**: The simulator reads the scenario file and creates aircraft using the Singleton AircraftFactory
+2. **ID Generation**: Each aircraft receives a unique ID from the factory
+3. **Registration**: All aircraft register with the WeatherTower (Observer pattern)
+4. **Simulation Loop**: For each simulation cycle:
    - The weather tower changes weather conditions
    - Each registered aircraft receives the weather update
    - Aircraft adjust their coordinates based on weather and type
@@ -130,14 +134,18 @@ avaj_launcher/
 
 ## 🛠️ Design Patterns
 
-### Factory Pattern
-The `AircraftFactory` class creates aircraft instances based on type strings, encapsulating object creation logic.
+### Factory Pattern (Singleton)
+The `AircraftFactory` class is implemented as a Singleton that creates aircraft instances based on type strings. It generates unique IDs for each aircraft and encapsulates all object creation logic.
 
 ### Observer Pattern
-The `Tower` class maintains a list of observers (aircraft) and notifies them of weather changes. Aircraft implement the `Flyable` interface to receive updates.
+The `Tower` class maintains a list of observers (aircraft) and notifies them of weather changes. Aircraft extend the `Flyable` abstract class which provides the registration mechanism.
 
 ### Singleton Pattern
-The `WeatherProvider` ensures only one instance exists to generate consistent weather conditions.
+- **WeatherProvider**: Ensures only one instance exists to generate consistent weather conditions
+- **AircraftFactory**: Guarantees centralized aircraft creation and unique ID generation
+
+### Encapsulation
+The `Coordinates` class uses a package-private constructor, with `CoordinatesFactory` providing controlled access from other packages.
 
 ## ⚠️ Error Handling
 
