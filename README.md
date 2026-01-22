@@ -183,6 +183,3 @@ This project teaches:
 
 This project is part of the 42 School curriculum.
 
-## 👤 Author
-
-Created as part of the 42 School avaj-launcher project.
