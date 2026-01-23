@@ -19,6 +19,7 @@ The project implements key design patterns including:
 - **Scenario-Based Simulation**: Load aircraft configurations from text files
 - **Automatic Landing**: Aircraft land when they reach height 0
 - **Input Validation**: Comprehensive error handling for invalid scenarios
+- **Output Logging**: All simulation output is automatically saved to `simulation.txt`
 
 ## 🚀 Installation
 
@@ -43,6 +44,8 @@ javac simulator/*.java simulator/**/*.java
 ```bash
 java simulator.Simulator scenario.txt
 ```
+
+The simulation output will be saved to `simulation.txt` in the current directory.
 
 ### Scenario File Format
 
@@ -80,7 +83,7 @@ Helicopter H2 22 33 44
 ```
 avaj_launcher/
 ├── simulator/
-│   ├── Simulator.java           # Main entry point
+│   ├── Simulator.java           # Main entry point with output redirection
 │   ├── Flyable.java             # Abstract base class for flyable objects
 │   ├── Tower.java               # Observer pattern implementation
 │   ├── aircraft/
@@ -101,10 +104,11 @@ avaj_launcher/
 
 ## 🎮 How It Works
 
-1. **Initialization**: The simulator reads the scenario file and creates aircraft using the Singleton AircraftFactory
-2. **ID Generation**: Each aircraft receives a unique ID from the factory
-3. **Registration**: All aircraft register with the WeatherTower (Observer pattern)
-4. **Simulation Loop**: For each simulation cycle:
+1. **Output Setup**: The simulator redirects all output to `simulation.txt`
+2. **Initialization**: The simulator reads the scenario file and creates aircraft using the Singleton AircraftFactory
+3. **ID Generation**: Each aircraft receives a unique ID from the factory
+4. **Registration**: All aircraft register with the WeatherTower (Observer pattern)
+5. **Simulation Loop**: For each simulation cycle:
    - The weather tower changes weather conditions
    - Each registered aircraft receives the weather update
    - Aircraft adjust their coordinates based on weather and type
@@ -136,7 +140,7 @@ avaj_launcher/
 The `AircraftFactory` class is implemented as a Singleton that creates aircraft instances based on type strings. It generates unique IDs for each aircraft and encapsulates all object creation logic.
 
 ### Observer Pattern
-The `Tower` class maintains a list of observers (aircraft) and notifies them of weather changes. Aircraft extend the `Flyable` abstract class which provides the registration mechanism.
+The `Tower` class maintains a list of observers (aircraft) and notifies them of weather changes. Aircraft extend the `Flyable` abstract class, which provides the `weatherTower` field and the `registerTower()` method for the registration mechanism.
 
 ### Singleton Pattern
 - **WeatherProvider**: Ensures only one instance exists to generate consistent weather conditions
