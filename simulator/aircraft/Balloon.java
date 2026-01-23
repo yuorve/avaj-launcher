@@ -4,9 +4,9 @@ import simulator.coordinates.Coordinates;
 import simulator.coordinates.CoordinatesFactory;
 import simulator.weather.WeatherTower;
 
-public class Baloon extends Aircraft {
+public class Balloon extends Aircraft {
 
-    public Baloon(long id, String name, Coordinates coordinates) {
+    public Balloon(long id, String name, Coordinates coordinates) {
         super(id, name, coordinates);
     }
 
@@ -25,7 +25,7 @@ public class Baloon extends Aircraft {
                 break;
             case "RAIN":
                 height -= 5;
-                System.out.println(this + ": Damn you rain! You messed up my baloon.");
+                System.out.println(this + ": Damn you rain! You messed up my Balloon.");
                 break;
             case "FOG":
                 height -= 3;

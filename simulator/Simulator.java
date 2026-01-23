@@ -3,6 +3,8 @@ package simulator;
 import simulator.factory.AircraftFactory;
 import simulator.weather.WeatherTower;
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +17,14 @@ public class Simulator {
             System.err.println("Usage: java simulator <scenario_file>");
             System.exit(1);
         }
+
+        try {
+			PrintStream out = new PrintStream(new FileOutputStream("simulation.txt"));
+			System.setOut(out);
+		} catch (Exception e) {
+			System.err.println("Could not redirect output to simulation.txt: " + e.getMessage());
+			return;
+		}
 
         String scenarioFile = args[0];
         WeatherTower weatherTower = new WeatherTower();

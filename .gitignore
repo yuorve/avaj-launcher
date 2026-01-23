@@ -26,5 +26,6 @@ replay_pid*
 global.puml
 scenario.txt
 sources.txt
+simulation.txt
 *.pdf
 *.png

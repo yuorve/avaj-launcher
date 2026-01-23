@@ -1,7 +1,7 @@
 package simulator.factory;
 
 import simulator.Flyable;
-import simulator.aircraft.Baloon;
+import simulator.aircraft.Balloon;
 import simulator.aircraft.Helicopter;
 import simulator.aircraft.JetPlane;
 import simulator.coordinates.Coordinates;
@@ -27,8 +27,8 @@ public class AircraftFactory {
         long id = nextId();
 
         switch (type.toLowerCase()) {
-            case "baloon":
-                return new Baloon(id, name, coordinates);
+            case "balloon":
+                return new Balloon(id, name, coordinates);
             case "helicopter":
                 return new Helicopter(id, name, coordinates);
             case "jetplane":

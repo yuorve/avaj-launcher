@@ -58,15 +58,15 @@ The scenario file must follow this format:
 **Example** (`scenario.txt`):
 ```
 25
-Baloon B1 2 3 20
-Baloon B2 1 8 66
+Balloon B1 2 3 20
+Balloon B2 1 8 66
 JetPlane J1 23 44 32
 Helicopter H1 654 33 20
 Helicopter H2 22 33 44
 ```
 
 ### Valid Aircraft Types
-- `Baloon`
+- `Balloon`
 - `Helicopter`
 - `JetPlane`
 
@@ -85,7 +85,7 @@ avaj_launcher/
 │   ├── Tower.java               # Observer pattern implementation
 │   ├── aircraft/
 │   │   ├── Aircraft.java        # Abstract aircraft class (extends Flyable)
-│   │   ├── Baloon.java          # Balloon implementation
+│   │   ├── Balloon.java          # Balloon implementation
 │   │   ├── Helicopter.java      # Helicopter implementation
 │   │   └── JetPlane.java        # JetPlane implementation
 │   ├── coordinates/
@@ -160,10 +160,10 @@ The program validates:
 ```
 Tower says: Helicopter#H1(1) registered to weather tower.
 Tower says: Helicopter#H2(2) registered to weather tower.
-Tower says: Baloon#B1(3) registered to weather tower.
+Tower says: Balloon#B1(3) registered to weather tower.
 Helicopter#H1(1): This is hot! Time to cool down.
 Helicopter#H2(2): Let's enjoy the good weather and take some pics.
-Baloon#B1(3): Let's enjoy the good weather and take some pics.
+Balloon#B1(3): Let's enjoy the good weather and take some pics.
 ...
 Tower says: Helicopter#H1(1) unregistering from weather tower.
 Helicopter#H1(1): Landing.
